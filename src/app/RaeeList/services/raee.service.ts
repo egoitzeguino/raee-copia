@@ -91,19 +91,23 @@ updateTable():void{
         } else if (tag === 4 || tag === 5) {
           raee.porcentaje = 68;
         } else if (tag === 6) {
-          raee.porcentaje = 90;
+          raee.porcentaje = 100;
         } else {
           raee.porcentaje = 100;
         }
 
         const lecturas = this.lecturasPorCodigo[raee.CodigoEtiqueta];
         this.raeesLecturas.push([raee, lecturas]);
-        console.log(this.raeesLecturas);
+
       });
     }
 
-  searchTag(query: string): Observable<Raee[]> {
-    return this.http.get<Raee[]>(this.serviceUrl).pipe(
+  searchTag(query: string,dateIni: string,dateFin:string): Observable<Raee[]> {
+
+    let newUrl =this.serviceUrl;
+    newUrl += "?fechaInicio="+dateIni;
+    newUrl += "&fechaFin="+dateFin;
+    return this.http.get<Raee[]>(newUrl).pipe(
       map(data => this.findSimilarItems(data, query)),
       catchError(error => of([]))
     );
@@ -129,7 +133,7 @@ updateTable():void{
   recargarListaConBusqueda() {
     const searchQuery = this.route.snapshot.queryParams['search'];
     if (searchQuery) {
-      this.searchTag(searchQuery).subscribe(
+      this.searchTag(searchQuery,"00-00-0000","00-00-3000").subscribe(
         (resultados) => {
           this.setResultados(resultados);
         },

@@ -1,7 +1,7 @@
 import { Component, Inject} from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { Raee } from 'src/app/interfaces/raee.interface';
+import { Raee } from '../../interfaces/raee.interface';
 import { NgIf } from '@angular/common';
 
 @Component({

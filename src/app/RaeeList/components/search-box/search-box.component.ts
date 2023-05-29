@@ -1,5 +1,5 @@
 import { Raee } from './../../interfaces/raee.interface';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RaeeService } from '../../services/raee.service';
 import { take } from 'rxjs';
@@ -9,13 +9,16 @@ import { take } from 'rxjs';
   templateUrl: './search-box.component.html',
   styleUrls: ['./search-box.component.css']
 })
-export class SearchBoxComponent implements OnInit {
+export class SearchBoxComponent implements OnInit, AfterViewInit{
   @ViewChild('txtTagInput') tagInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('DateInputIni') tagDateIni!: ElementRef<HTMLInputElement>;
+  @ViewChild('DateInputFin') tagDateFin!: ElementRef<HTMLInputElement>;
 
   isSearching: boolean = false;
   resultado?: Raee;
   resultados?: Raee[] = [];
   resultadosOriginales?: Raee[] = [];
+  Todaydate = this.formatDate(new Date());
 
 
   constructor(
@@ -24,6 +27,9 @@ export class SearchBoxComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
+  ngAfterViewInit(): void {
+    this.tagDateFin.nativeElement.value = this.Todaydate.toString();
   }
 
   // Cargar la página localhost
@@ -61,6 +67,10 @@ export class SearchBoxComponent implements OnInit {
 
   buscar() {
     const newTag = this.tagInput.nativeElement.value;
+    const newDateIni = this.tagDateIni.nativeElement.value;
+    let newDateFin = this.tagDateFin.nativeElement.value;
+    if(!newDateFin)
+      newDateFin=this.Todaydate;
 
     if (newTag.trim() === '') {
       // Restablecer los resultados y las propiedades
@@ -77,7 +87,7 @@ export class SearchBoxComponent implements OnInit {
     }
 
     // Realizar búsqueda en el servicio de raees
-    this.raeeService.searchTag(newTag).subscribe(
+    this.raeeService.searchTag(newTag,newDateIni,newDateFin).subscribe(
       (resultados) => {
         if (resultados.length > 0) {
           // Filtrar los resultados
@@ -103,4 +113,16 @@ export class SearchBoxComponent implements OnInit {
   }
 
 
+  padTo2Digits(num:number) {
+    return num.toString().padStart(2, '0');
+  }
+  formatDate(date: Date) {
+    return (
+      [
+        date.getFullYear(),
+        this.padTo2Digits(date.getMonth() + 1),
+        this.padTo2Digits(date.getDate()),
+      ].join('-')
+    );
+  }
 }

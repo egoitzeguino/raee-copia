@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { RaeeService } from '../../services/raee.service';
-import { Raee } from 'src/app/interfaces/raee.interface';
+import { Raee } from '../../interfaces/raee.interface';
 import { MatDialog } from '@angular/material/dialog';
-import { TarjetaLecturaContent } from 'src/app/pages/tarjeta-lecturas/terjeta-lectura';
+import { TarjetaLecturaContent } from '../../pages/tarjeta-lecturas/terjeta-lectura';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
-import { TarjetaRaeeContent } from 'src/app/pages/tarjeta-raee/tarjeta-raee';
+import { TarjetaRaeeContent } from '../../pages/tarjeta-raee/tarjeta-raee';
 
 @Component({
   selector: 'raee-list',

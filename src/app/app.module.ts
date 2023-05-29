@@ -10,13 +10,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainPageComponent } from './pages/main-page/main-page.component';
-import { MenuComponent } from './components/menu/menu.component';
-import { SearchBoxComponent } from './components/search-box/search-box.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { ListComponent } from './components/list/list.component';
-import { TarjetaRaee } from './pages/tarjeta-raee/tarjeta-raee';
-import { FooterComponent } from './components/footer/footer.component';
+import { MainPageComponent } from './RaeeList/pages/main-page/main-page.component';
+import { MenuComponent } from './RaeeList/components/menu/menu.component';
+import { SearchBoxComponent } from './RaeeList/components/search-box/search-box.component';
+import { SidebarComponent } from './RaeeList/components/sidebar/sidebar.component';
+import { ListComponent } from './RaeeList/components/list/list.component';
+import { TarjetaRaee } from './RaeeList/pages/tarjeta-raee/tarjeta-raee';
+import { FooterComponent } from './RaeeList/components/footer/footer.component';
 
 import {GoogleMapsModule} from '@angular/google-maps';
 

@@ -1,5 +1,6 @@
 <div class="all">
   <h2 mat-dialog-title>Código lectura: {{lecturaElegida?.CargaDatosLecturasId}}</h2>
+
   <mat-dialog-content id="container">
     <hr>
     <div id="tarjeta">
@@ -8,11 +9,9 @@
           <h4>Fecha lectura: </h4>
           <h2>{{lecturaElegida?.FechaLectura}}</h2>
 
-          <h4>Geo posición: </h4>
-          <h2>{{lecturaElegida?.GeoPosicion}}</h2>
-
           <h4>Tipo lectura: </h4>
           <h2>{{lecturaElegida?.TipoLectura}}</h2>
+
 
         </div>
       </div>
@@ -30,11 +29,11 @@
       </div>
       <div id="info-col-der">
         <div *ngIf="lecturaElegida">
-          <google-map [center]="center" width="100%" height="650px">
-            <map-marker [position]="position" [label]="label"></map-marker>
-          </google-map>
         </div>
       </div>
     </div>
-
   </mat-dialog-content>
+  <google-map [center]="center" width="100%" height="40%">
+    <map-marker [position]="position" [label]="label"></map-marker>
+  </google-map>
+</div>
