@@ -1,0 +1,46 @@
+.all {
+  height: 47vh;
+  width: 37vw;
+  overflow: hidden;
+}
+
+.mat-dialog-title {
+  text-align: center;
+}
+
+.mat-dialog-content {
+  background-color: white;
+  color: black;
+  display: flex;
+}
+
+h2 {
+  font-size: 2vh;
+}
+
+#tarjeta {
+  display: flex;
+  align-items: center;
+}
+
+#datos {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+#titulo-col-izq h4,
+#titulo-col-der h4 {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+#titulo-col-der {
+  margin-left: 3vw;
+}

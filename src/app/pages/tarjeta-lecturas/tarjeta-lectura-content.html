@@ -1,0 +1,35 @@
+<div class="all">
+  <h2 mat-dialog-title>Código lectura: {{lecturaElegida?.CargaDatosLecturasId}}</h2>
+  <mat-dialog-content id="container">
+    <hr>
+    <div id="tarjeta">
+      <div id="datos">
+        <div id="titulo-col-izq">
+          <h4>Fecha lectura: </h4>
+          <h2>{{lecturaElegida?.FechaLectura}}</h2>
+
+          <h4>Geo posición: </h4>
+          <h2>{{lecturaElegida?.GeoPosicion}}</h2>
+
+          <h4>Tipo lectura: </h4>
+          <h2>{{lecturaElegida?.TipoLectura}}</h2>
+
+        </div>
+      </div>
+
+      <div id="titulo-col-der">
+        <h4>Donde: </h4>
+        <h2>{{lecturaElegida?.Donde}}</h2>
+
+        <h4>Región: </h4>
+        <h2>{{lecturaElegida?.Region}}</h2>
+
+        <h4>Provincia: </h4>
+        <h2>{{lecturaElegida?.Provincia}}</h2>
+
+      </div>
+      <div id="info-col-der">
+      </div>
+    </div>
+
+  </mat-dialog-content>

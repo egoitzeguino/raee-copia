@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display&display=swap');
+
+.logo {
+  display: flex;
+  height: 26vh;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+img {
+
+  width: 7vw;
+  height: 7vw;
+
+}
+
+.telon {
+  height: 100vh;
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.793);
+  color: aliceblue;
+  display: block;
+  align-items: center;
+  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.butongroup {
+  flex-direction: column;
+  align-items: center;
+}
+
+.botones {
+  padding-top: 1vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+
+.sidebar-image {
+  width: 10%;
+  max-width: 10%;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+  height: 7vh;
+}
+
+
+a {
+  justify-content: center;
+}
+
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: black;
+  background-color: #fff;
+}

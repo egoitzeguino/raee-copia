@@ -1,0 +1,10 @@
+body {
+  background-image: url("../../../assets/img/inicio.gif");
+  background-repeat: no-repeat;
+  color: aliceblue;
+  background-size: cover;
+}
+
+.menu {
+  background-color: rgba(255, 255, 255, 0.489);
+}

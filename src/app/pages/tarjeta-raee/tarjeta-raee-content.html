@@ -1,0 +1,63 @@
+<div class="all">
+
+  <h2 mat-dialog-title>{{RaeeElegido?.CodigoEtiqueta}}</h2>
+  <mat-dialog-content id="container">
+
+    <div id="tarjeta">
+      <div id="foto-id">
+        <div id="foto">
+          <div class="fotos" *ngIf="RaeeElegido?.TipoRAEE==='FR1 - Frigoríficos'">
+            <img src="../../../assets/img/frigo.png" alt="Frigorifico">
+          </div>
+          <div class="fotos" *ngIf="RaeeElegido?.TipoRAEE === 'FR2 - Monitores'">
+            <img src=".../../../../../assets/img/monitor.png" alt="Monitor">
+          </div>
+          <div class="fotos" *ngIf="RaeeElegido?.TipoRAEE === 'FR4 - Electrodomésticos'">
+            <img src="../../../../assets/img/electro.png" alt="">
+          </div>
+          <div class="fotos" *ngIf="RaeeElegido?.TipoRAEE === 'FR6 - Ordenadores'">
+            <img src="../../../../assets/img/pc.png" alt="">
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <hr>
+
+      <div id="datos">
+
+        <div id="col-izq">
+          <div id="titulo-col-izq">
+            <h4>Id lectura </h4>
+            <h2>{{RaeeElegido?.CargaDatosLecturasId}}</h2>
+
+            <h4>Tipo RAEE: </h4>
+            <h2>{{RaeeElegido?.TipoRAEE}}</h2>
+
+            <h4>Descripción residuo: </h4>
+            <h2>{{RaeeElegido?.DescripcionResiduo}}</h2>
+
+          </div>
+        </div>
+
+        <div id="col-der">
+          <div id="titulo-col-der">
+            <h4>Marca: </h4>
+            <h2>{{RaeeElegido?.Marca}}</h2>
+
+            <h4>Modelo: </h4>
+            <h2>{{RaeeElegido?.Modelo}}</h2>
+
+            <h4>Peso: </h4>
+            <h2>{{RaeeElegido?.Peso}}</h2>
+
+          </div>
+          <div id="info-col-der">
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>

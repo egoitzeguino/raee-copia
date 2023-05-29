@@ -1,0 +1,17 @@
+footer {
+  background-color: rgba(0, 0, 0, 0.793);
+  display: flex;
+}
+
+div {
+  width: 96%;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+img {
+  height: 75px;
+  width: auto;
+}

@@ -1,0 +1,32 @@
+.custom-navbar {
+  height: 11vh;
+  border: #000;
+  border-style: solid;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.custom-navbar .navbar-brand {
+  height: 6vh;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 0 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  color: white;
+}
+
+.custom-navbar .nav-link {
+  font-size: 18px;
+  color: #333;
+}
+
+.custom-navbar .nav-link.active {
+  font-weight: bold;
+  color: #000;
+}
