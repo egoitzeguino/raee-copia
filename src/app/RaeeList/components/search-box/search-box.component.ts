@@ -68,23 +68,9 @@ export class SearchBoxComponent implements OnInit, AfterViewInit{
   buscar() {
     const newTag = this.tagInput.nativeElement.value;
     const newDateIni = this.tagDateIni.nativeElement.value;
-    let newDateFin = this.tagDateFin.nativeElement.value;
+    let newDateFin = this.tagDateFin.nativeElement.value || this.Todaydate;
     if(!newDateFin)
       newDateFin=this.Todaydate;
-
-    if (newTag.trim() === '') {
-      // Restablecer los resultados y las propiedades
-      this.resultado = undefined;
-      this.resultados = [];
-      this.isSearching = false;
-      this.raeeService.setResultado(undefined);
-      this.raeeService.setResultados([]);
-
-      // Restablecer el campo de búsqueda
-      this.tagInput.nativeElement.value = ''; // Agregar esta línea
-
-      return; // Salir del método sin realizar la búsqueda
-    }
 
     // Realizar búsqueda en el servicio de raees
     this.raeeService.searchTag(newTag,newDateIni,newDateFin).subscribe(

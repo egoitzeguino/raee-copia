@@ -22,7 +22,7 @@
         </div>
 
         <!-- Listar raees -->
-        <div *ngIf="!resultado; else resultadopresente">
+        <div>
           <ul class="list-group">
             <li class="list-group-item" *ngFor="let raee of raees | paginate: { itemsPerPage: 4, currentPage: page }">
               <div class="titulos">
@@ -38,25 +38,24 @@
 
               <div class="d-flex">
                 <div id="entradasalida1">
-                  <button class="botonLectura" (click)="ejecutarLectura(raee, 0)">S</button>
+                  <button class="botonLectura" *ngIf="raee.contador > 0" (click)="ejecutarLectura(raee, 0)">S</button>
                 </div>
 
                 <div id="entradasalida1">
-                  <!-- Botones de lectura -->
-                  <button class="botonLectura" *ngIf="raee.contador > 1" (click)="ejecutarLectura(raee, 1)">E</button>
-                  <button class="botonLectura" *ngIf="raee.contador > 2" (click)="ejecutarLectura(raee, 2)">S</button>
+                  <button class="botonLectura" *ngIf="raee.base + 1 < raee.contador" (click)="ejecutarLectura(raee, raee.base + 1)">E</button>
+                  <button class="botonLectura" *ngIf="raee.base + 2 < raee.contador" (click)="ejecutarLectura(raee, raee.base + 2)">S</button>
                   <div class="botonLecturaSimulado"></div>
                 </div>
 
                 <div id="entradasalida2">
-                  <button class="botonLectura" *ngIf="raee.contador > 3" (click)="ejecutarLectura(raee, 3)">E</button>
-                  <button class="botonLectura" *ngIf="raee.contador > 4" (click)="ejecutarLectura(raee, 4)">S</button>
+                  <button class="botonLectura" *ngIf="raee.base + 3 < raee.contador" (click)="ejecutarLectura(raee, raee.base + 3)">E</button>
+                  <button class="botonLectura" *ngIf="raee.base + 4 < raee.contador" (click)="ejecutarLectura(raee, raee.base + 4)">S</button>
                   <div class="botonLecturaSimulado"></div>
                 </div>
 
                 <div id="entradasalida3">
-                  <button class="botonLectura" *ngIf="raee.contador > 5" (click)="ejecutarLectura(raee, 5)">E</button>
-                  <button class="botonLectura" *ngIf="raee.contador > 6" (click)="ejecutarLectura(raee, 6)">S</button>
+                  <button class="botonLectura" *ngIf="raee.base + 5 < raee.contador" (click)="ejecutarLectura(raee, raee.base + 5)">E</button>
+                  <button class="botonLectura" *ngIf="raee.base + 6 < raee.contador" (click)="ejecutarLectura(raee, raee.base + 6)">S</button>
                   <div class="botonLecturaSimulado"></div>
                 </div>
               </div>
@@ -66,48 +65,6 @@
           <!-- Paginación -->
           <pagination-controls (pageChange)="page = $event"></pagination-controls>
         </div>
-
-        <!-- Resultado de búsqueda -->
-        <ng-template #resultadopresente>
-          <div class="resultado" *ngIf="resultado">
-            <div class="titulos">
-              <button class="botonTitulo" (click)="ejecutarAccion(resultado)">{{ resultado.CodigoEtiqueta }}</button>
-            </div>
-
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" [style.width.%]="resultado.porcentaje"
-                [attr.aria-valuenow]="resultado.porcentaje" aria-valuemin="0" aria-valuemax="100"
-                [class.blue]="resultado.contador === 7">
-              </div>
-            </div>
-
-            <div class="d-flex">
-              <div id="entradasalida1">
-                <button class="botonLectura" (click)="ejecutarLectura(resultado, 0)">S</button>
-              </div>
-
-              <div id="entradasalida1">
-                <!-- Botones de lectura -->
-                <button class="botonLectura" *ngIf="resultado.contador > 1" (click)="ejecutarLectura(resultado, 1)">E</button>
-                <button class="botonLectura" *ngIf="resultado.contador > 2" (click)="ejecutarLectura(resultado, 2)">S</button>
-                <div class="botonLecturaSimulado"></div>
-              </div>
-
-              <div id="entradasalida2">
-                <button class="botonLectura" *ngIf="resultado.contador > 3" (click)="ejecutarLectura(resultado, 3)">E</button>
-                <button class="botonLectura" *ngIf="resultado.contador > 4" (click)="ejecutarLectura(resultado, 4)">S</button>
-                <div class="botonLecturaSimulado"></div>
-              </div>
-
-              <div id="entradasalida3">
-                <button class="botonLectura" *ngIf="resultado.contador > 5" (click)="ejecutarLectura(resultado, 5)">E</button>
-                <button class="botonLectura" *ngIf="resultado.contador > 6" (click)="ejecutarLectura(resultado, 6)">S</button>
-                <div class="botonLecturaSimulado"></div>
-              </div>
-            </div>
-          </div>
-          <pagination-controls (pageChange)="page = $event"></pagination-controls>
-        </ng-template>
       </div>
     </div>
   </div>

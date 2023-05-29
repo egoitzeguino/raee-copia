@@ -51,9 +51,10 @@ export class RaeeService {
 
 updateTable():void{
 
-  this.raees = []; // Mueve esta línea fuera del bucle
+  this.raees = [];
   this.tagCounts = {};
   this.raeesLecturas = [] ;
+  //this.lecturasPorCodigo = {};
 
       for (let i = 0; i < this.lecturas.length; i++) {
         const raee = this.lecturas[i];
@@ -78,8 +79,10 @@ updateTable():void{
         if (!this.lecturasPorCodigo[tag]) {
           this.lecturasPorCodigo[tag] = [];
         }
+        if(!this.lecturasPorCodigo[tag].find((r) => r.CargaDatosLecturasId === raee.CargaDatosLecturasId))
         this.lecturasPorCodigo[tag].push(raee);
       }
+
 
       // Calcular la propiedad porcentaje para cada raee en base a su valor de contador
       this.raees.forEach((raee) => {
@@ -90,20 +93,24 @@ updateTable():void{
           raee.porcentaje = 34.5;
         } else if (tag === 4 || tag === 5) {
           raee.porcentaje = 68;
-        } else if (tag === 6) {
-          raee.porcentaje = 100;
         } else {
           raee.porcentaje = 100;
         }
 
         const lecturas = this.lecturasPorCodigo[raee.CodigoEtiqueta];
+        if (lecturas) {
+          raee.base = lecturas.findIndex((r) => r.CargaDatosLecturasId === raee.CargaDatosLecturasId);
+        } else {
+          raee.base = -1; // Set -1 if the raee is not found in lecturasPorCodigo
+        }
+        console.log(this.lecturasPorCodigo[raee.CodigoEtiqueta]);
+        console.log(raee)
         this.raeesLecturas.push([raee, lecturas]);
 
       });
     }
 
   searchTag(query: string,dateIni: string,dateFin:string): Observable<Raee[]> {
-
     let newUrl =this.serviceUrl;
     newUrl += "?fechaInicio="+dateIni;
     newUrl += "&fechaFin="+dateFin;
@@ -113,6 +120,8 @@ updateTable():void{
     );
   }
   findSimilarItems(data: Raee[], query: string): Raee[] {
+    if(query === '')
+      return data;
     const fuse = new Fuse(data, {
       keys: ['CodigoEtiqueta'], // Specify the properties to search for similarity
       includeScore: true, // Include similarity scores in the results

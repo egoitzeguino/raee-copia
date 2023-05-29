@@ -1,18 +1,17 @@
 <div class="filter">
   <div class="search">
-
-    <input type="text"
-    class="form-control"
-    placeholder="Buscar por etiqueta..."
-    (keyup)="buscar()" #txtTagInput>
+    <input type="text" class="form-control" placeholder="Buscar por etiqueta..." (keyup)="buscar()" #txtTagInput>
   </div>
 
-  <div>
+  <div class="fecha">
     <h3>Fecha inicio</h3>
-    <input type="date" #DateInputIni (change)="buscar()">
+    <input type="date" #DateInputIni>
   </div>
-  <div>
+
+  <div class="fecha">
     <h3>Fecha fin</h3>
-    <input type="date" #DateInputFin (change)="buscar()">
+    <input type="date" #DateInputFin>
   </div>
+
+  <button type="button" (click)="buscar()">Buscar por fecha</button>
 </div>
