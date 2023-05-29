@@ -18,6 +18,8 @@ import { ListComponent } from './components/list/list.component';
 import { TarjetaRaee } from './pages/tarjeta-raee/tarjeta-raee';
 import { FooterComponent } from './components/footer/footer.component';
 
+import {GoogleMapsModule} from '@angular/google-maps';
+
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { FooterComponent } from './components/footer/footer.component';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    TarjetaRaee,
+    GoogleMapsModule,
+
   ],
 
   providers:[
@@ -51,7 +54,6 @@ import { FooterComponent } from './components/footer/footer.component';
 
   exports: [
     SearchBoxComponent,
-    TarjetaRaee,
   ],
 
   bootstrap: [AppComponent]

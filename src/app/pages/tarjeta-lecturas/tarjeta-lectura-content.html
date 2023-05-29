@@ -29,6 +29,11 @@
 
       </div>
       <div id="info-col-der">
+        <div *ngIf="lecturaElegida">
+          <google-map [center]="center" width="100%" height="650px">
+            <map-marker [position]="position" [label]="label"></map-marker>
+          </google-map>
+        </div>
       </div>
     </div>
 
