@@ -9,34 +9,13 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-@media (min-width: 768px) {
-  .filter {
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-}
-
-.search {
-  display: flex;
-  align-items: left;
-  flex-direction: column;
-
-
-  margin-right: 50px;
-}
-
-.region {
-  display: flex;
-  align-items: left;
-  margin-right: 50px;
-  flex-direction: column;
-}
-
-input[type="text"],
-input[type="date"] {
+.search input[type="text"],
+.region input[type="text"],
+.fechas input[type="date"],
+.tipo-raee select {
   height: 40px;
   width: 100%;
-  max-width: 200px;
+  max-width: 150px;
   padding: 5px;
   border: 1px solid #ccc;
   background-color: transparent;
@@ -44,40 +23,41 @@ input[type="date"] {
   color: #333333aa;
 }
 
-button {
-  margin-left: 10px;
-  padding: 8px 15px;
-  border: none;
-  background-color: #838383;
-  color: white;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-}
+@media (min-width: 768px) {
+  .filter {
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
 
-button:hover {
-  background-color: #ffffff;
-  color: black;
-}
+  .search,
+  .region {
+    flex-basis: 20%;
+    margin-right: 20px;
+  }
 
+  .fechas {
+    display: flex;
+    flex-basis: 30%;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+  }
 
+  .fechainicio,
+  .fechafin {
+    flex-basis: 50%;
+    margin-right: 20px;
+  }
 
-.fechas {
-  display: flex;
-  justify-content: center;
-  margin-right: 40px;
-}
+  .tipo-raee {
+    flex-basis: 20%;
+    margin-top: 10px;
+  }
 
-.fecha {
-  margin-top: 10px;
-}
-
-.fecha input[type="date"] {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-radius: 5px;
-}
-
-.fecha button {
-  margin-top: 10px;
+  button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    font-size: 16px;
+  }
 }

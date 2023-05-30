@@ -1,38 +1,40 @@
 <div class="filter">
-
-
-    <div class="search">
+  <!-- Div de búsqueda por etiqueta -->
+  <div class="search">
       <h3>Buscar etiqueta:</h3>
       <input type="text" class="form-control" placeholder="Buscar por etiqueta..." (keyup)="buscar()" #txtTagInput>
-    </div>
+  </div>
 
-    <div class="region">
-      <h3>Buscar region:</h3>
-      <input type="text" class="form-control" placeholder="Buscar por region..." (keyup.enter)="buscar()" #regionInput>
-    </div>
+  <!-- Div de búsqueda por región -->
+  <div class="region">
+      <h3>Buscar región:</h3>
+      <input type="text" class="form-control" placeholder="Buscar por región..." (keyup.enter)="buscar()" #regionInput>
+  </div>
 
+  <!-- Div de fechas -->
   <div class="fechas">
-    <div class="fechainicio">
-      <h3>Fecha inicio</h3>
-      <input type="date" #DateInputIni>
-    </div>
+      <!-- Div de fecha de inicio -->
+      <div class="fechainicio">
+          <h3>Fecha inicio:</h3>
+          <input type="date" #DateInputIni>
+      </div>
 
-    <div class="fechafin">
-      <h3>Fecha fin</h3>
-      <input type="date" #DateInputFin>
-    </div>
-
+      <!-- Div de fecha de fin -->
+      <div class="fechafin">
+          <h3>Fecha fin:</h3>
+          <input type="date" #DateInputFin>
+      </div>
   </div>
 
-
+  <!-- Div de selección de tipo de Raee -->
   <div class="tipo-raee">
-    <h3>Seleccionar Tipo de Raee:</h3>
-    <select id="tipoRaeeInput" class="form-control" [(ngModel)]="tipoRaee">
-      <option *ngFor="let tipo of tipoRaeeValues" [value]="tipo">{{ tipo }}</option>
-    </select>
+      <h3>Seleccionar Tipo de Raee:</h3>
+      <select id="tipoRaeeInput" class="form-control" [(ngModel)]="tipoRaee">
+          <!-- Opciones del tipo de Raee -->
+          <option *ngFor="let tipo of tipoRaeeValues" [value]="tipo">{{ tipo }}</option>
+      </select>
   </div>
 
-  <button type="button" (click)="buscar()">Buscar </button>
-
-
+  <!-- Botón de búsqueda -->
+  <button type="button" (click)="buscar()">Buscar</button>
 </div>
