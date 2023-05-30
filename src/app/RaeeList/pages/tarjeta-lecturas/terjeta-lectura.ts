@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Raee } from '../../interfaces/raee.interface';
 import { Router } from '@angular/router';
 import { CommonModule, NgIf } from '@angular/common';
-import {GoogleMapsModule} from '@angular/google-maps';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @Component({
   selector: 'tarjeta-lectura',
@@ -17,6 +17,7 @@ export class TarjetaLectura {
   constructor(public dialog: MatDialog, private router: Router) {}
 
   openDialog() {
+    // Abre el diálogo de TarjetaLecturaContent
     const dialogRef = this.dialog.open(TarjetaLecturaContent);
 
     dialogRef.afterClosed().subscribe(() => {});
@@ -28,15 +29,18 @@ export class TarjetaLectura {
   templateUrl: 'tarjeta-lectura-content.html',
   styleUrls: ['tarjeta-lectura.css'],
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule, CommonModule,GoogleMapsModule],
+  imports: [MatDialogModule, MatButtonModule, CommonModule, GoogleMapsModule],
 })
-export class TarjetaLecturaContent implements OnInit{
+export class TarjetaLecturaContent implements OnInit {
   public lecturaElegida: Raee | null | undefined;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+    // Recibe los datos de entrada del diálogo
     this.lecturaElegida = data;
   }
+
   ngOnInit(): void {
+    // Se ejecuta al inicializar el componente
     this.updateMap();
   }
 
@@ -45,6 +49,7 @@ export class TarjetaLecturaContent implements OnInit{
   label: google.maps.MarkerLabel;
 
   updateMap() {
+    // Actualiza el mapa con la posición y etiqueta correspondientes
     let posicionSeparada: string[] | undefined = ['0', '0'];
     posicionSeparada = this.lecturaElegida?.GeoPosicion.split(', ');
     this.position = {

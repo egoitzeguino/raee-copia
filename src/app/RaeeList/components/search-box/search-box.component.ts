@@ -9,30 +9,23 @@ import { take } from 'rxjs';
   templateUrl: './search-box.component.html',
   styleUrls: ['./search-box.component.css']
 })
-export class SearchBoxComponent implements OnInit, AfterViewInit{
+export class SearchBoxComponent implements OnInit, AfterViewInit {
 
+  // Elementos ViewChild para acceder a los elementos del DOM
   @ViewChild('txtTagInput') tagInput!: ElementRef<HTMLInputElement>;
   @ViewChild('DateInputIni') tagDateIni!: ElementRef<HTMLInputElement>;
   @ViewChild('DateInputFin') tagDateFin!: ElementRef<HTMLInputElement>;
   @ViewChild('regionInput') regionInput!: ElementRef<HTMLInputElement>;
   @ViewChild('tipoRaeeInput') tipoRaeeInput!: ElementRef<HTMLSelectElement>;
 
-
-
-
+  // Propiedades de la clase
   isSearching: boolean = false;
   resultado?: Raee;
   resultados?: Raee[] = [];
   resultadosOriginales?: Raee[] = [];
   Todaydate = this.formatDate(new Date());
-  tipoRaee : TipoRAEE;
+  tipoRaee: TipoRAEE;
   tipoRaeeValues: TipoRAEE[];
-
-
-
-
-
-
 
   constructor(
     public raeeService: RaeeService,
@@ -41,6 +34,7 @@ export class SearchBoxComponent implements OnInit, AfterViewInit{
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
+
   ngAfterViewInit(): void {
     this.tagDateFin.nativeElement.value = this.Todaydate.toString();
   }
@@ -56,8 +50,6 @@ export class SearchBoxComponent implements OnInit, AfterViewInit{
       this.resultadosOriginales = resultados;
     });
     this.tipoRaeeValues = Object.values(TipoRAEE) as TipoRAEE[];
-
-
   }
 
   handlePopstateEvent() {
@@ -78,7 +70,6 @@ export class SearchBoxComponent implements OnInit, AfterViewInit{
       }
     );
   }
-
 
   buscar() {
     const newRegion = this.regionInput.nativeElement.value;
@@ -119,11 +110,10 @@ export class SearchBoxComponent implements OnInit, AfterViewInit{
     this.handlePopstateEvent();
   }
 
-
-
-  padTo2Digits(num:number) {
+  padTo2Digits(num: number) {
     return num.toString().padStart(2, '0');
   }
+
   formatDate(date: Date) {
     return (
       [

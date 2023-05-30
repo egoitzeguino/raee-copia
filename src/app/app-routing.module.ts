@@ -5,30 +5,27 @@ import { ListComponent } from './RaeeList/components/list/list.component';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-
-  {
-    path: 'home',
-    component: MainPageComponent
+    path: '', // Ruta vacía (raíz de la aplicación)
+    redirectTo: 'home', // Redirige a la ruta '/home'
+    pathMatch: 'full' // Coincidencia completa para redireccionar
   },
   {
-    path: 'lista',
-    component: ListComponent,
-    pathMatch: 'full',
-
+    path: 'home', // Ruta '/home'
+    component: MainPageComponent // Componente asociado: MainPageComponent
   },
-
   {
-    path: '**',
-    redirectTo: 'home'
+    path: 'lista', // Ruta '/lista'
+    component: ListComponent, // Componente asociado: ListComponent
+    pathMatch: 'full' // Coincidencia completa para la ruta
+  },
+  {
+    path: '**', // Ruta comodín, captura cualquier ruta no definida
+    redirectTo: 'home' // Redirige a la ruta '/home'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)], // Configuración de rutas principales
+  exports: [RouterModule] // Exporta el módulo de rutas para su uso en otros módulos
 })
 export class AppRoutingModule { }
