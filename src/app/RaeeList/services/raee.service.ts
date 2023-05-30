@@ -115,14 +115,12 @@ export class RaeeService {
   }
 
   // Método para buscar etiquetas
-  searchTag(query: string, dateIni: string, dateFin: string, region: string, TipoRaee: TipoRAEE): Observable<Raee[]> {
+  searchTag(query: string, dateIni: string, dateFin: string, region: string): Observable<Raee[]> {
     let newUrl = this.serviceUrl;
     newUrl += "?fechaInicio=" + dateIni;
     newUrl += "&fechaFin=" + dateFin;
     if (region.length > 0)
       newUrl += "&region=" + region;
-    if (TipoRAEE)
-      newUrl += "&tipoRaee=" + TipoRAEE;
     return this.http.get<Raee[]>(newUrl).pipe(
       map(data => this.findSimilarItems(data, query)),
       catchError(error => of([]))
@@ -155,7 +153,7 @@ export class RaeeService {
   recargarListaConBusqueda() {
     const searchQuery = this.route.snapshot.queryParams['search'];
     if (searchQuery) {
-      this.searchTag(searchQuery, "00-00-0000", "00-00-3000", "Pais Vasco", TipoRAEE.FR1Frigoríficos).subscribe(
+      this.searchTag(searchQuery, "00-00-0000", "00-00-3000", "Pais Vasco").subscribe(
         (resultados) => {
           this.setResultados(resultados);
         },

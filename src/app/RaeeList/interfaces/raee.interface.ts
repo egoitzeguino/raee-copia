@@ -57,6 +57,10 @@ export enum TipoLectura {
 export enum TipoRAEE {
   FR1Frigoríficos = "FR1 - Frigoríficos",
   FR2Monitores = "FR2 - Monitores",
+  FR3Lamparas = "FR3 - Lamparas",
   FR4Electrodomésticos = "FR4 - Electrodomésticos",
+  FR5ElectrodomésticosPequeños = "FR5 - Electrodomésticos Pequeños",
   FR6Ordenadores = "FR6 - Ordenadores",
+  FR7PanelesFotovoltaicos = "FR7 - Paneles Fotovoltaicos",
+
 }

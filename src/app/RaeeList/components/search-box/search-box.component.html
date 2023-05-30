@@ -31,6 +31,7 @@
       <h3>Seleccionar Tipo de Raee:</h3>
       <select id="tipoRaeeInput" class="form-control" [(ngModel)]="tipoRaee">
           <!-- Opciones del tipo de Raee -->
+          <option [value]=""></option>
           <option *ngFor="let tipo of tipoRaeeValues" [value]="tipo">{{ tipo }}</option>
       </select>
   </div>

@@ -84,13 +84,15 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
 
     // Realizar búsqueda en el servicio de raees
     this.raeeService
-      .searchTag(newTag, newDateIni, newDateFin, newRegion, newTipoRaee) // Pasar el valor seleccionado correctamente
+      .searchTag(newTag, newDateIni, newDateFin, newRegion) // Pasar el valor seleccionado correctamente
       .subscribe(
         (resultados) => {
           if (resultados.length > 0) {
             // Filtrar los resultados
             this.resultados = resultados;
             this.isSearching = true;
+            if(newTipoRaee)
+             this.resultados = this.filtradoTipoRaee(newTipoRaee);
             this.raeeService.setRaee(this.resultados);
           } else {
             // Si no se encontraron resultados, se muestra una alerta
@@ -122,5 +124,13 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
         this.padTo2Digits(date.getDate()),
       ].join('-')
     );
+  }
+  filtradoTipoRaee(tipo:TipoRAEE):Raee[]{
+    let temp:Raee[] = [];
+    this.resultados!.forEach(r => {
+      if(r.TipoRAEE === tipo)
+        temp.push(r);
+    });
+    return temp;
   }
 }
