@@ -1,17 +1,38 @@
 <div class="filter">
-  <div class="search">
-    <input type="text" class="form-control" placeholder="Buscar por etiqueta..." (keyup)="buscar()" #txtTagInput>
+
+
+    <div class="search">
+      <h3>Buscar etiqueta:</h3>
+      <input type="text" class="form-control" placeholder="Buscar por etiqueta..." (keyup)="buscar()" #txtTagInput>
+    </div>
+
+    <div class="region">
+      <h3>Buscar region:</h3>
+      <input type="text" class="form-control" placeholder="Buscar por region..." (keyup.enter)="buscar()" #regionInput>
+    </div>
+
+  <div class="fechas">
+    <div class="fechainicio">
+      <h3>Fecha inicio</h3>
+      <input type="date" #DateInputIni>
+    </div>
+
+    <div class="fechafin">
+      <h3>Fecha fin</h3>
+      <input type="date" #DateInputFin>
+    </div>
+
   </div>
 
-  <div class="fecha">
-    <h3>Fecha inicio</h3>
-    <input type="date" #DateInputIni>
+
+  <div class="tipo-raee">
+    <h3>Seleccionar Tipo de Raee:</h3>
+    <select id="tipoRaeeInput" class="form-control" [(ngModel)]="tipoRaee">
+      <option *ngFor="let tipo of tipoRaeeValues" [value]="tipo">{{ tipo }}</option>
+    </select>
   </div>
 
-  <div class="fecha">
-    <h3>Fecha fin</h3>
-    <input type="date" #DateInputFin>
-  </div>
+  <button type="button" (click)="buscar()">Buscar </button>
 
-  <button type="button" (click)="buscar()">Buscar por fecha</button>
+
 </div>

@@ -1,4 +1,4 @@
-import { Raee } from './../../interfaces/raee.interface';
+import { Raee, TipoRAEE } from './../../interfaces/raee.interface';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RaeeService } from '../../services/raee.service';
@@ -10,15 +10,28 @@ import { take } from 'rxjs';
   styleUrls: ['./search-box.component.css']
 })
 export class SearchBoxComponent implements OnInit, AfterViewInit{
+
   @ViewChild('txtTagInput') tagInput!: ElementRef<HTMLInputElement>;
   @ViewChild('DateInputIni') tagDateIni!: ElementRef<HTMLInputElement>;
   @ViewChild('DateInputFin') tagDateFin!: ElementRef<HTMLInputElement>;
+  @ViewChild('regionInput') regionInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('tipoRaeeInput') tipoRaeeInput!: ElementRef<HTMLSelectElement>;
+
+
+
 
   isSearching: boolean = false;
   resultado?: Raee;
   resultados?: Raee[] = [];
   resultadosOriginales?: Raee[] = [];
   Todaydate = this.formatDate(new Date());
+  tipoRaee : TipoRAEE;
+  tipoRaeeValues: TipoRAEE[];
+
+
+
+
+
 
 
   constructor(
@@ -42,6 +55,8 @@ export class SearchBoxComponent implements OnInit, AfterViewInit{
     this.raeeService.resultados$.pipe(take(1)).subscribe((resultados) => {
       this.resultadosOriginales = resultados;
     });
+    this.tipoRaeeValues = Object.values(TipoRAEE) as TipoRAEE[];
+
 
   }
 
@@ -66,37 +81,44 @@ export class SearchBoxComponent implements OnInit, AfterViewInit{
 
 
   buscar() {
+    const newRegion = this.regionInput.nativeElement.value;
     const newTag = this.tagInput.nativeElement.value;
     const newDateIni = this.tagDateIni.nativeElement.value;
     let newDateFin = this.tagDateFin.nativeElement.value || this.Todaydate;
-    if(!newDateFin)
-      newDateFin=this.Todaydate;
+    const newTipoRaee = this.tipoRaee; // Obtener el valor seleccionado del tipo de RAEE
+
+    if (!newDateFin) {
+      newDateFin = this.Todaydate;
+    }
 
     // Realizar búsqueda en el servicio de raees
-    this.raeeService.searchTag(newTag,newDateIni,newDateFin).subscribe(
-      (resultados) => {
-        if (resultados.length > 0) {
-          // Filtrar los resultados
-          this.resultados = resultados;
-          this.isSearching = true;
-          this.raeeService.setRaee(this.resultados);
-        } else {
-          // Si no se encontraron resultados, se muestra una alerta
-          window.alert('No se encontraron etiquetas.');
-          this.resultado = undefined;
-          this.resultados = [];
-          this.isSearching = false;
-          this.raeeService.setResultado(undefined);
-          this.raeeService.setResultados([]);
+    this.raeeService
+      .searchTag(newTag, newDateIni, newDateFin, newRegion, newTipoRaee) // Pasar el valor seleccionado correctamente
+      .subscribe(
+        (resultados) => {
+          if (resultados.length > 0) {
+            // Filtrar los resultados
+            this.resultados = resultados;
+            this.isSearching = true;
+            this.raeeService.setRaee(this.resultados);
+          } else {
+            // Si no se encontraron resultados, se muestra una alerta
+            window.alert('No se encontraron etiquetas.');
+            this.resultado = undefined;
+            this.resultados = [];
+            this.isSearching = false;
+            this.raeeService.setResultado(undefined);
+            this.raeeService.setResultados([]);
+          }
+        },
+        (error) => {
+          console.log('Error');
         }
-      },
-      (error) => {
-        console.log('Error');
-      }
-    );
+      );
 
     this.handlePopstateEvent();
   }
+
 
 
   padTo2Digits(num:number) {

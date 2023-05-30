@@ -32,30 +32,30 @@
               <div class="progress">
                 <div class="progress-bar" role="progressbar" [style.width.%]="raee.porcentaje"
                   [attr.aria-valuenow]="raee.porcentaje" aria-valuemin="0" aria-valuemax="100"
-                  [class.blue]="raee.contador === 7">
+                  [class.blue]="raee.porcentaje === 100">
                 </div>
               </div>
 
               <div class="d-flex">
                 <div id="entradasalida1">
-                  <button class="botonLectura" *ngIf="raee.contador > 0" (click)="ejecutarLectura(raee, 0)">S</button>
+                  <button class="botonLectura" *ngIf="calculateVisibility(raee.base,raee.contador,0)" (click)="ejecutarLectura(raee, 0)">S</button>
                 </div>
 
                 <div id="entradasalida1">
-                  <button class="botonLectura" *ngIf="raee.base + 1 < raee.contador" (click)="ejecutarLectura(raee, raee.base + 1)">E</button>
-                  <button class="botonLectura" *ngIf="raee.base + 2 < raee.contador" (click)="ejecutarLectura(raee, raee.base + 2)">S</button>
+                  <button class="botonLectura" *ngIf="calculateVisibility(raee.base,raee.contador,1)" (click)="ejecutarLectura(raee, raee.base + 1)">E</button>
+                  <button class="botonLectura" *ngIf="calculateVisibility(raee.base,raee.contador,2)" (click)="ejecutarLectura(raee, raee.base + 2)">S</button>
                   <div class="botonLecturaSimulado"></div>
                 </div>
 
                 <div id="entradasalida2">
-                  <button class="botonLectura" *ngIf="raee.base + 3 < raee.contador" (click)="ejecutarLectura(raee, raee.base + 3)">E</button>
-                  <button class="botonLectura" *ngIf="raee.base + 4 < raee.contador" (click)="ejecutarLectura(raee, raee.base + 4)">S</button>
+                  <button class="botonLectura" *ngIf="calculateVisibility(raee.base,raee.contador,3)" (click)="ejecutarLectura(raee, raee.base + 3)">E</button>
+                  <button class="botonLectura" *ngIf="calculateVisibility(raee.base,raee.contador,4)" (click)="ejecutarLectura(raee, raee.base + 4)">S</button>
                   <div class="botonLecturaSimulado"></div>
                 </div>
 
                 <div id="entradasalida3">
-                  <button class="botonLectura" *ngIf="raee.base + 5 < raee.contador" (click)="ejecutarLectura(raee, raee.base + 5)">E</button>
-                  <button class="botonLectura" *ngIf="raee.base + 6 < raee.contador" (click)="ejecutarLectura(raee, raee.base + 6)">S</button>
+                  <button class="botonLectura" *ngIf="calculateVisibility(raee.base,raee.contador,5)" (click)="ejecutarLectura(raee, raee.base + 5)">E</button>
+                  <button class="botonLectura" *ngIf="calculateVisibility(raee.base,raee.contador,6)" (click)="ejecutarLectura(raee, raee.base + 6)">S</button>
                   <div class="botonLecturaSimulado"></div>
                 </div>
               </div>

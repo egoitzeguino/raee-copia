@@ -19,6 +19,7 @@ import { TarjetaRaee } from './RaeeList/pages/tarjeta-raee/tarjeta-raee';
 import { FooterComponent } from './RaeeList/components/footer/footer.component';
 
 import {GoogleMapsModule} from '@angular/google-maps';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -44,6 +45,7 @@ import {GoogleMapsModule} from '@angular/google-maps';
     MatFormFieldModule,
     MatInputModule,
     GoogleMapsModule,
+    FormsModule
 
   ],
 

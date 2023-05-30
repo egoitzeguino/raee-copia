@@ -126,4 +126,15 @@ export class ListComponent implements OnInit {
       }
     });
   }
+  calculateVisibility(base:number, contador:number, index:number):boolean{
+    console.log("Base:"+base);
+    console.log("Contador:"+contador);
+    console.log("Index:"+index);
+    if (contador > 0 && index >= base && index < base+contador) {
+      return true;
+    }
+
+    return false;
+  }
 }
+

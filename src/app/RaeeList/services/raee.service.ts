@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Raee } from '../interfaces/raee.interface';
+import { Raee, TipoRAEE } from '../interfaces/raee.interface';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { CacheStore } from '../interfaces/cache-store';
@@ -86,7 +86,14 @@ updateTable():void{
 
       // Calcular la propiedad porcentaje para cada raee en base a su valor de contador
       this.raees.forEach((raee) => {
-        const tag = raee.contador;
+        const lecturas = this.lecturasPorCodigo[raee.CodigoEtiqueta];
+        if (lecturas) {
+          raee.base = lecturas.findIndex((r) => r.CargaDatosLecturasId === raee.CargaDatosLecturasId);
+        } else {
+          raee.base = -1; // Set -1 if the raee is not found in lecturasPorCodigo
+        }
+
+        const tag = lecturas.length;
         if (tag === 1) {
           raee.porcentaje = 1;
         } else if (tag === 2 || tag === 3) {
@@ -97,23 +104,21 @@ updateTable():void{
           raee.porcentaje = 100;
         }
 
-        const lecturas = this.lecturasPorCodigo[raee.CodigoEtiqueta];
-        if (lecturas) {
-          raee.base = lecturas.findIndex((r) => r.CargaDatosLecturasId === raee.CargaDatosLecturasId);
-        } else {
-          raee.base = -1; // Set -1 if the raee is not found in lecturasPorCodigo
-        }
-        console.log(this.lecturasPorCodigo[raee.CodigoEtiqueta]);
-        console.log(raee)
+        //console.log(this.lecturasPorCodigo[raee.CodigoEtiqueta]);
+        //console.log(raee)
         this.raeesLecturas.push([raee, lecturas]);
 
       });
     }
 
-  searchTag(query: string,dateIni: string,dateFin:string): Observable<Raee[]> {
+  searchTag(query: string,dateIni: string,dateFin:string,region:string,TipoRaee: TipoRAEE): Observable<Raee[]> {
     let newUrl =this.serviceUrl;
     newUrl += "?fechaInicio="+dateIni;
     newUrl += "&fechaFin="+dateFin;
+    if(region.length>0)
+    newUrl += "&region="+region;
+    if(TipoRAEE)
+    newUrl += "&tipoRaee="+TipoRAEE;
     return this.http.get<Raee[]>(newUrl).pipe(
       map(data => this.findSimilarItems(data, query)),
       catchError(error => of([]))
@@ -122,6 +127,7 @@ updateTable():void{
   findSimilarItems(data: Raee[], query: string): Raee[] {
     if(query === '')
       return data;
+
     const fuse = new Fuse(data, {
       keys: ['CodigoEtiqueta'], // Specify the properties to search for similarity
       includeScore: true, // Include similarity scores in the results
@@ -142,7 +148,7 @@ updateTable():void{
   recargarListaConBusqueda() {
     const searchQuery = this.route.snapshot.queryParams['search'];
     if (searchQuery) {
-      this.searchTag(searchQuery,"00-00-0000","00-00-3000").subscribe(
+      this.searchTag(searchQuery,"00-00-0000","00-00-3000","Pais Vasco",TipoRAEE.FR1Frigoríficos).subscribe(
         (resultados) => {
           this.setResultados(resultados);
         },
