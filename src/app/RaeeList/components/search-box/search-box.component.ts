@@ -133,4 +133,5 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
     });
     return temp;
   }
+  
 }

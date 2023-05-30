@@ -24,7 +24,7 @@
         <!-- Listar raees -->
         <div>
           <ul class="list-group">
-            <li class="list-group-item" *ngFor="let raee of raees | paginate: { itemsPerPage: 4, currentPage: page }">
+            <li class="list-group-item" *ngFor="let raee of raees | paginate: { itemsPerPage: 3, currentPage: page }">
               <div class="titulos">
                 <button class="botonTitulo" (click)="ejecutarAccion(raee)">{{ raee.CodigoEtiqueta }}</button>
               </div>

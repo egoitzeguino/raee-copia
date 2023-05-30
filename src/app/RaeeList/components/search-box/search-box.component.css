@@ -28,12 +28,12 @@
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: wrap;
+    width: 97%;
   }
 
   .search,
   .region {
-    flex-basis: 20%;
-    margin-right: 20px;
+    flex-basis: 15%;
   }
 
   .fechas {
@@ -41,7 +41,6 @@
     flex-basis: 30%;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 10px;
   }
 
   .fechainicio,
@@ -52,12 +51,23 @@
 
   .tipo-raee {
     flex-basis: 20%;
-    margin-top: 10px;
   }
 
   button {
-    margin-top: 10px;
     padding: 10px 15px;
-    font-size: 16px;
+    font-size: 40px;
+    border-radius: 5px; /* Agrega un border-radius de 5px */
+    background-color: #333;
+    color: #fff; /* Color de fondo inicial */
+    border: none; /* Elimina el borde por defecto */
+    transition: background-color 0.3s; /* Agrega una transición de 0.3 segundos al cambio de color de fondo */
+    margin-left: 130px;
+    height: auto;
   }
+
+  button:hover {
+    background-color: #c0c0c0; /* Color de fondo al hacer hover */
+    color:black;
+  }
+  
 }
