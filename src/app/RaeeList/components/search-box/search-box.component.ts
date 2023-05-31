@@ -37,6 +37,7 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.tagDateFin.nativeElement.value = this.Todaydate.toString();
+    this.buscar();
   }
 
   // Cargar la página localhost
@@ -91,8 +92,11 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
             // Filtrar los resultados
             this.resultados = resultados;
             this.isSearching = true;
-            if(newTipoRaee)
-             this.resultados = this.filtradoTipoRaee(newTipoRaee);
+            if(newTipoRaee){
+              this.resultados = this.filtradoTipoRaee(newTipoRaee);
+            }
+            this.resultados = this.resultados.sort((a, b) =>
+              a.CodigoEtiqueta.localeCompare(b.CodigoEtiqueta));
             this.raeeService.setRaee(this.resultados);
           } else {
             // Si no se encontraron resultados, se muestra una alerta
@@ -133,5 +137,5 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
     });
     return temp;
   }
-  
+
 }
