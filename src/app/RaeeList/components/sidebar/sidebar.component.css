@@ -6,7 +6,18 @@
   justify-content: center;
   align-items: center;
   border: none;
+  animation: logo-fade 25s infinite;
 }
+
+@keyframes logo-fade {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
 
 img {
 

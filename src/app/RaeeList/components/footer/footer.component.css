@@ -1,18 +1,23 @@
 footer {
-  background-color: rgba(0, 0, 0, 0.793);
-  display: flex;
-  
+  background-color: #212121;
+  padding: 20px 0;
+  text-align: center;
 }
 
-div {
-  width: 96%;
+footer div {
   display: flex;
-  justify-content: space-between;
-  margin-right: 5%;
-  margin-left: 5%;
+  justify-content: center;
+  align-items: center;
 }
 
-img {
+footer img {
   height: 70px;
   width: auto;
+  margin: 10px;
+  filter: grayscale(0%);
+  transition: filter 0.3s ease;
+}
+
+footer img:hover {
+  filter: grayscale(100%);
 }
